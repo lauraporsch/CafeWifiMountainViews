@@ -1,4 +1,5 @@
 # CafeWifiMountainViews
+I used a template from Start Bootstrap (https://startbootstrap.com/themes/clean-blog) for the basic front-end design.
 This is a work in progress.
 The following changes are planned:
 - add a contact form
