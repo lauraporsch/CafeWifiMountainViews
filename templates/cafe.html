@@ -1,0 +1,75 @@
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1581259021841-a16d7c2a777d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1157&q=80')">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="post-heading">
+					<h1>{{cafe.name}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>🧭 Address:</td>
+                        <td>{{cafe.location}}</td>
+                    </tr>
+                    <tr>
+                        <td>🕒 Opening Times:</td>
+                        <td>{{cafe.open}} - {{cafe.close}}</td>
+                    </tr>
+                    <tr>
+                        <td>📶 WiFi:</td>
+                        <td>{% if cafe.wifi == 1: %}
+                                ✔️
+                            {% elif cafe.wifi == 0: %}
+                                ✖️
+                            {% else: %}
+                                N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>🔌 Sockets:</td>
+                        <td>{% if cafe.sockets == 1:%}
+                                ✔️
+                            {% elif cafe.sockets == 0: %}
+                                ✖️
+                            {% else: %}
+                                N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>⛰️ Mountain Views:</td>
+                        <td>{% if cafe.mountain_views == 1:%}
+                                ✔️
+                            {% elif cafe.mountain_views == 0: %}
+                                ✖️
+                            {% else: %}
+                                N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <a class="btn btn-primary float-right" href="{{cafe.maps_url}}">Show on map</a>
+          </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+{% include "footer.html" %}
