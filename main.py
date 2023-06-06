@@ -73,7 +73,7 @@ def check_submit_fields(option):
 
 
 @app.route("/")
-def show_all_cafes():
+def show_overview():
     cafes = db.session.query(Cafes).all()
     return render_template("index.html", all_cafes=cafes)
 
@@ -103,6 +103,12 @@ def add_cafe():
         return redirect(url_for('show_all_cafes'))
     else:
         return render_template('add.html', form=form)
+
+
+@app.route("/all_cafes")
+def show_all_cafes():
+    cafes = db.session.query(Cafes).all()
+    return render_template("all_cafes.html", all_cafes=cafes)
 
 
 if __name__ == "__main__":

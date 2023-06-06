@@ -14,8 +14,7 @@
     </div>
 </header>
 
-  <!-- Post Content -->
-  <article>
+
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
@@ -23,7 +22,7 @@
                 <tbody>
                     <tr>
                         <td>🧭 Address:</td>
-                        <td>{{cafe.location}}</td>
+                        <td><a href="{{cafe.maps_url}}">{{cafe.location}}</a></td>
                     </tr>
                     <tr>
                         <td>🕒 Opening Times:</td>
@@ -52,7 +51,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>⛰️ Mountain Views:</td>
+                        <td>⛰️ Views:</td>
                         <td>{% if cafe.mountain_views == 1:%}
                                 ✔️
                             {% elif cafe.mountain_views == 0: %}
@@ -65,11 +64,15 @@
                 </tbody>
             </table>
             <br>
-            <a class="btn btn-primary float-right" href="{{cafe.maps_url}}">Show on map</a>
-          </div>
+        </div>
       </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 mx-auto text-center">
+            <a class="btn btn-primary" href="{{cafe.maps_url}}">Back to all Cafes</a>
+            </div>
+        </div>
     </div>
-  </article>
+
 
   <hr>
 {% include "footer.html" %}

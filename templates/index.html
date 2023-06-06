@@ -1,6 +1,6 @@
 {% include "header.html" %}
 
-  <!-- Page Header -->
+
   <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1061&q=80)">
     <div class="overlay"></div>
     <div class="container">
@@ -16,8 +16,8 @@
     </div>
   </header>
 
-  <!-- Main Content -->
-  <div class="container">
+
+  <div class="container-fluid">
     <div class="row">
       {% for cafe in all_cafes %}
       <div class="col-lg-4 col-md-6 mx-auto text-left">
@@ -35,6 +35,9 @@
       {% endfor %}
     </div>
     <div class="row">
+      <div class="col-lg-4 col-md-6 mx-auto text-center">
+         <a class="btn btn-primary" href="{{url_for('show_all_cafes')}}">Show all Cafes</a>
+      </div>
       <div class="col-lg-4 col-md-6 mx-auto text-center">
          <a class="btn btn-primary" href="{{url_for('add_cafe')}}">Add Cafe</a>
       </div>

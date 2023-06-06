@@ -29,7 +29,7 @@
  }
 
  a {
-     color:212529;
+     color:#0085a1;
      transition:all .2s
  }
  a:focus,a:hover {
@@ -63,6 +63,11 @@
 
  .btn-primary{background-color:#0085a1;border-color:#0085a1}.btn-primary:active,.btn-primary:focus,.btn-primary:hover{color:#fff;background-color:#00657b!important;border-color:#00657b!important}.btn-lg{font-size:16px;padding:25px 35px}.form-control{font-size: 1.2rem;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
 
+.cafe-name {
+    color: black;
+    text-decoration: underline;
+    }
+
 .card {
     margin-bottom: 30px;
 }
@@ -72,6 +77,6 @@
      font-size: 15px;
  }
 
- td {
+ td, th {
      padding: 10px 50px;
      }
