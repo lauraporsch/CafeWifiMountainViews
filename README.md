@@ -1,4 +1,6 @@
 # CafeWifiMountainViews
+A website that lists Cafes in Banff with a focus on WiFi and Socket Availability as well as Mountain Views.
+Users can add new Cafes which will be automatically added to the SQLlite Database.
 
 I used a template from Start Bootstrap (https://startbootstrap.com/themes/clean-blog) for the basic front-end design.
 This is a work in progress.
