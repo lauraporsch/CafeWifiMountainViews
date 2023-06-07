@@ -1,6 +1,9 @@
+<!--ADD A CAFE TO THE DATABASE VIA INPUT IN WTFORM-->
+<!--add Bootstrap templates-->
 {% extends 'bootstrap/base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+<!--blocks CSS from Bootstrap templates above, so that it uses clean-blog template for Styling-->
 {% block content %}
 {% include "header.html" %}
 
@@ -21,6 +24,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
+          <!-- adds the CafeForm created in main.py, turns off browser default validation messages-->
          {{ wtf.quick_form(form, novalidate = True) }}
     </div>
   </div>

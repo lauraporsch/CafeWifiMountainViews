@@ -1,3 +1,4 @@
+//THIS CODE WAS COMPLETELY TAKEN FROM THE TEMPLATE
 /* jqBootstrapValidation
  * A plugin for automating validation on Twitter Bootstrap formatted forms.
  *

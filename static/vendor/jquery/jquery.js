@@ -1,4 +1,5 @@
 /*!
+//THIS CODE WAS COMPLETELY TAKEN FROM THE TEMPLATE
  * jQuery JavaScript Library v3.5.1
  * https://jquery.com/
  *

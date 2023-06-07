@@ -1,3 +1,4 @@
+//THIS CODE WAS COMPLETELY TAKEN FROM THE TEMPLATE
 (function($) {
   "use strict"; // Start of use strict
 

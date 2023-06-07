@@ -1,3 +1,4 @@
+<!--HOMEPAGE SHOWS OVERVIEWS OF ALL CAFES IN THE DB-->
 {% include "header.html" %}
 
 
@@ -19,6 +20,7 @@
 
   <div class="container-fluid">
     <div class="row">
+      <!-- creates a card for every Cafe in the DB-->
       {% for cafe in all_cafes %}
       <div class="col-lg-4 col-md-6 mx-auto text-left">
         <div class="card">
