@@ -1,7 +1,7 @@
 <!--CONTACT FORM TO BE SENT TO WEBSITE CREATOR-->
 {% include "header.html" %}
 
-  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/contact-bg.jpg')}}')">
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/contact-bg.jpg') }}')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -25,7 +25,7 @@
       <div class="col-lg-8 col-md-10 mx-auto">
         <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
         <!--uses the form that was already set up in the template as foundation, will change this to a wtform with my own code soon-->
-        <form name="sentMessage" id="contactForm" action="{{url_for('contact')}}" method="POST" novalidate>
+        <form name="sentMessage" id="contactForm" action="{{ url_for('contact') }}" method="POST" novalidate>
 
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">

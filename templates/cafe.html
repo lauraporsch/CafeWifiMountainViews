@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-lg-8 col-md-10 mx-auto">
 				<div class="post-heading">
-					<h1>{{cafe.name}}</h1>
+					<h1>{{ cafe.name }}</h1>
                 </div>
             </div>
         </div>
@@ -21,11 +21,11 @@
             <tbody>
             <tr>
                 <td>🧭 Address:</td>
-                <td><a href="{{cafe.maps_url}}">{{cafe.location}}</a></td>
+                <td><a href="{{ cafe.maps_url }}">{{ cafe.location }}</a></td>
             </tr>
             <tr>
                 <td>🕒 Opening Times:</td>
-                <td>{{cafe.open}} - {{cafe.close}}</td>
+                <td>{{ cafe.open }} - {{ cafe.close }}</td>
             </tr>
             <tr>
                 <td>📶 WiFi:</td>
@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td>🔌 Sockets:</td>
-                <td>{% if cafe.sockets == 1:%}
+                <td>{% if cafe.sockets == 1: %}
                     ✔️
                     {% elif cafe.sockets == 0: %}
                     ✖️
@@ -51,7 +51,7 @@
             </tr>
             <tr>
                 <td>⛰️ Views:</td>
-                <td>{% if cafe.mountain_views == 1:%}
+                <td>{% if cafe.mountain_views == 1: %}
                     ✔️
                     {% elif cafe.mountain_views == 0: %}
                     ✖️
@@ -66,7 +66,8 @@
     </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-md-6 mx-auto text-center"><a class="btn btn-primary" href="{{cafe.maps_url}}">Back to all Cafes</a>
+        <div class="col-lg-6 col-md-6 mx-auto text-center">
+            <a class="btn btn-primary" href="{{ url_for ('show_overview') }}">Back to all Cafes</a>
         </div>
     </div>
 </div>

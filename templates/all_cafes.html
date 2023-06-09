@@ -28,9 +28,9 @@
             <!-- calls all Cafes from DB and creates table rows with the info-->
             {% for cafe in all_cafes %}
             <tr>
-                <td><a class="cafe-name" href="{{url_for('show_cafe', cafe_id=cafe.id)}}">{{cafe.name}}</a></td>
-                <td><a href="{{cafe.maps_url}}">{{cafe.location}}</a></td>
-                <td>{{cafe.open}} - {{cafe.close}}</td>
+                <td><a class="cafe-name" href="{{ url_for('show_cafe', cafe_id=cafe.id) }}">{{ cafe.name}}</a></td>
+                <td><a href="{{ cafe.maps_url }}">{{ cafe.location }}</a></td>
+                <td>{{ cafe.open }} - {{ cafe.close }}</td>
                 <td>{% if cafe.wifi == 1: %}
                     ✔️
                     {% elif cafe.wifi == 0: %}
@@ -47,7 +47,7 @@
                     N/A
                     {% endif %}
                 </td>
-                <td>{% if cafe.mountain_views == 1:%}
+                <td>{% if cafe.mountain_views == 1: %}
                     ✔️
                     {% elif cafe.mountain_views == 0: %}
                     ✖️
