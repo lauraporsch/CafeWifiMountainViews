@@ -136,6 +136,12 @@ def contact():
         return render_template("contact.html", message_sent=False)
 
 
+@app.route("/update-cafe")
+def update_cafe():
+    return render_template("update-cafe.html")
+
+
+
 # ---------------------------- CREATE RESTful API ------------------------------- #
 # ---HTTP GET - Read Record(s)--- #
 @app.route("/get_all_cafes")

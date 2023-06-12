@@ -29,7 +29,7 @@
             {% for cafe in all_cafes %}
             <tr>
                 <td><a class="cafe-name" href="{{ url_for('show_cafe', cafe_id=cafe.id) }}">{{ cafe.name}}</a></td>
-                <td><a href="{{ cafe.maps_url }}">{{ cafe.location }}</a></td>
+                <td><a href="{{ cafe.maps_url }}" target="_blank">{{ cafe.location }}</a></td>
                 <td>{{ cafe.open }} - {{ cafe.close }}</td>
                 <td>{% if cafe.wifi == 1: %}
                     ✔️
