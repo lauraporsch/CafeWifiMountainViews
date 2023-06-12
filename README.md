@@ -6,9 +6,6 @@ I used a template from Start Bootstrap (https://startbootstrap.com/themes/clean-
 
 This is a work in progress.
 The following changes are planned:
-- add a review and commenting function 
-- add a change function
 - add the option to sign up and login
-- change that adding is only possible if signed in
 - add admin only functions (e.g. delete or change cafes)
 
