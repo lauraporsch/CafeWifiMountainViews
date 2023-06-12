@@ -1,11 +1,14 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_bootstrap import Bootstrap
+from flask_ckeditor import CKEditor
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField, TimeField
 from wtforms.validators import DataRequired, URL
 import smtplib
 import os
+from flask_ckeditor import CKEditorField
+from sqlalchemy.orm import relationship
 
 # set info for smtp as environmental variable to keep safe
 USER = os.environ["USER"]
@@ -14,6 +17,7 @@ PASSWORD = os.environ["PASSWORD"]
 # ---------------------------- START FLASK FRAMEWORK ------------------------------- #
 app = Flask(__name__)
 Bootstrap(app)
+ckeditor = CKEditor(app)
 app.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
 
 # ---------------------------- DATABASE SETUP ------------------------------- #
@@ -23,6 +27,7 @@ db = SQLAlchemy(app)
 
 
 class Cafes(db.Model):
+    __tablename__ = "cafes"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), unique=True, nullable=False)
     location = db.Column(db.String(250), unique=True, nullable=False)
@@ -33,6 +38,7 @@ class Cafes(db.Model):
     wifi = db.Column(db.Boolean)
     sockets = db.Column(db.Boolean)
     mountain_views = db.Column(db.Boolean)
+    comments = relationship("Comment", back_populates="parent_cafe")
 
     def __repr__(self):
         """returns name of Cafe when printed instead of <Cafes ID>"""
@@ -41,6 +47,33 @@ class Cafes(db.Model):
     def to_dict(self):
         """converts DB-row Object to Dictionary"""
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
+
+class Comment(db.Model):
+    __tablename__ = "comments"
+    id = db.Column(db.Integer, primary_key=True)
+    comment_author = db.Column(db.String(100), unique=True, nullable=False)
+    text = db.Column(db.Text, nullable=False)
+    cafe_id = db.Column(db.Integer, db.ForeignKey("cafes.id"))
+    parent_cafe = relationship("Cafes", back_populates="comments")
+
+#
+# # only run the first time to create DBs
+# with app.app_context():
+#     db.create_all()
+#     new_cafe = Cafes(
+#         name="Good Earth Coffee House",
+#         location="333 Banff Ave, Banff, AB T1L 1B1",
+#         maps_url="https://goo.gl/maps/aVTe7x2hdw4iu3NX7",
+#         image_url="https://lh5.googleusercontent.com/p/AF1QipMMgkOZNGreHF6na3qtMDInvNj_IY_VhCJ1MbRE=w408-h306-k-no",
+#         open="06:30AM",
+#         close="09:00PM",
+#         wifi=1,
+#         sockets=1,
+#         mountain_views=1)
+#     db.session.add(new_cafe)
+#     db.session.commit()
+
 
 
 # ---------------------------- SETUP FLASK FORM TO ADD CAFES ------------------------------- #
@@ -58,6 +91,12 @@ class CafeForm(FlaskForm):
     sockets = SelectField('Power Sockets available?', choices=select_choices, default="I don't know")
     mountain_views = SelectField('Mountain Views?', choices=select_choices, default="I don't know")
     submit = SubmitField('Submit')
+
+
+class CommentForm(FlaskForm):
+    user_name = StringField('Name', validators=[DataRequired()])
+    comment_text = CKEditorField("Comment", validators=[DataRequired()])
+    submit = SubmitField("Submit Comment")
 
 
 # ---------------------------- CREATE FUNCTIONS ------------------------------- #
@@ -79,12 +118,21 @@ def show_overview():
     return render_template("index.html", all_cafes=cafes)
 
 
-@app.route("/cafe/<int:cafe_id>")
+@app.route("/cafe/<int:cafe_id>", methods=["GET", "POST"])
 def show_cafe(cafe_id):
     """renders cafe.html, calls the data of the requested Cafe (Cafe clicked on by User) from the DB and shows this
-    info"""
+    info, gives option of commenting, shows previous comments"""
     requested_cafe = db.session.get(Cafes, cafe_id)
-    return render_template("cafe.html", cafe=requested_cafe)
+    form = CommentForm()
+    if form.validate_on_submit():
+        new_comment = Comment(
+            comment_author=form.user_name.data,
+            text=form.comment_text.data,
+            parent_cafe=requested_cafe
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+    return render_template("cafe.html", cafe=requested_cafe, form=form)
 
 
 @app.route("/add", methods=["GET", "POST"])
@@ -138,6 +186,7 @@ def contact():
 
 @app.route("/update-cafe")
 def update_cafe():
+    """renders update-cafe.html"""
     return render_template("update-cafe.html")
 
 

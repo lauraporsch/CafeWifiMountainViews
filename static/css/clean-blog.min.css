@@ -64,6 +64,11 @@ THIS CODE WAS MAINLY TAKEN FROM THE FOLLOWING TEMPLATE (ALL CODE THAT WAS EDITED
 
 
 /* the following code was added by Laura Porsch */
+ h3 {
+     color: #0085a1;
+     font-size: 40px;
+ }
+
  h5 {
     color: black;
  }
@@ -85,4 +90,23 @@ THIS CODE WAS MAINLY TAKEN FROM THE FOLLOWING TEMPLATE (ALL CODE THAT WAS EDITED
      font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
      font-size: 15px;
  }
+
+ .commentList {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+ }
+
+ .commentText p {
+    font-size: 17px;
+    margin:0;
+}
+
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+    text-align: center;
+}
 

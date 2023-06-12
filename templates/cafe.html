@@ -1,4 +1,8 @@
 <!--SHOW ALL INFORMATION ABOUT THE REQUESTED CAFE-->
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
 {% include "header.html" %}
 
 <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1581259021841-a16d7c2a777d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1157&q=80')">
@@ -73,7 +77,39 @@
             <a class="btn btn-primary" href="{{ url_for ('show_overview') }}">Back to all Cafes</a>
         </div>
     </div>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+     <h3> Reviews:</h3>
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto comment">
+
+          {% for comment in cafe.comments: %}
+              <ul class="commentList">
+                  <hr>
+                <li>
+                    <div class="commentText">
+                      <p>{{comment.text | safe}}</p>
+                      <span class="date sub-text">{{comment.comment_author}}</span>
+                    </div>
+                </li>
+                  <hr>
+              </ul>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {{ ckeditor.load() }}
+            {{ ckeditor.config(name='comment_text') }}
+            {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+        </div>
+    </div>
 </div>
 
 <hr>
 {% include "footer.html" %}
+{% endblock %}
