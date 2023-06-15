@@ -40,9 +40,11 @@
       <div class="col-lg-4 col-md-6 mx-auto text-center">
          <a class="btn btn-primary" href="{{ url_for('show_all_cafes') }}">Show all Cafes</a>
       </div>
+      {% if current_user.is_authenticated: %}
       <div class="col-lg-4 col-md-6 mx-auto text-center">
          <a class="btn btn-primary" href="{{ url_for('add_cafe') }}">Add Cafe</a>
       </div>
+      {% endif %}
     </div>
   </div>
 

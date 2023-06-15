@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TimeField, SelectField
+from wtforms import StringField, SubmitField, TimeField, SelectField, PasswordField
 from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditorField
 
@@ -19,8 +19,19 @@ class CafeForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-class CommentForm(FlaskForm):
-    user_name = StringField('Name', validators=[DataRequired()])
-    comment_text = CKEditorField("Comment", validators=[DataRequired()])
-    submit = SubmitField("Submit Comment")
+class ReviewForm(FlaskForm):
+    review_text = CKEditorField("Review", validators=[DataRequired()])
+    submit = SubmitField("Submit Review")
 
+
+class SignUpForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    submit = SubmitField("Sign Up!")
+
+
+class LoginForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    submit = SubmitField("Log In!")

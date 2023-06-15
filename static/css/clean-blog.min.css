@@ -64,49 +64,73 @@ THIS CODE WAS MAINLY TAKEN FROM THE FOLLOWING TEMPLATE (ALL CODE THAT WAS EDITED
 
 
 /* the following code was added by Laura Porsch */
- h3 {
-     color: #0085a1;
-     font-size: 40px;
- }
+h3 {
+    color: #0085a1;
+    font-size: 40px;
+}
 
- h5 {
-    color: black;
- }
+h5 {
+   color: black;
+}
 
-  td, th {
-     padding: 10px 50px;
-     }
+hr {
+    margin-top: 30px;
+}
+
+table {
+    margin-bottom: 50px;
+}
+
+td, th {
+    padding: 10px 50px;
+}
 
 .cafe-name {
     color: black;
     text-decoration: underline;
-    }
+}
 
 .card {
     margin-bottom: 30px;
 }
 
- .card-text {
-     font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
-     font-size: 15px;
- }
+.card-text {
+    font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+}
 
- .commentList {
+.list-inline {
+    margin:10px;
     padding:0;
-    list-style:none;
-    max-height:200px;
-    overflow:auto;
- }
+}
 
- .commentText p {
-    font-size: 17px;
-    margin:0;
+.reviewList {
+   padding:0;
+   list-style:none;
+   max-height:200px;
+   overflow:auto;
+}
+
+.reviewText p {
+   font-size: 17px;
+   margin:0;
+}
+
+.flashes {
+   color: red;
+   font-style: italic;
 }
 
 .sub-text {
-    color:#aaa;
-    font-family:verdana;
-    font-size:11px;
-    text-align: center;
+   color:#aaa;
+   font-family:verdana;
+   font-size:11px;
+   text-align: center;
+}
+
+.warning {
+   color:red;
+   font-style: bold;
+   font-size: 40px;
 }
 
