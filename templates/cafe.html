@@ -79,10 +79,14 @@
             <div class="col-lg-4 col-md-4 mx-auto text-center">
                 <a class="btn btn-primary" href="{{ url_for ('show_overview') }}">Back to all Cafes</a>
             </div>
-        {% else: %}
+        {% elif current_user.is_authenticated: %}
             <div class="col-lg-6 col-md-6 mx-auto text-center">
                 <a class="btn btn-primary" href="{{ url_for ('update_cafe') }}">Update Cafe</a>
             </div>
+            <div class="col-lg-6 col-md-6 mx-auto text-center">
+                <a class="btn btn-primary" href="{{ url_for ('show_overview') }}">Back to all Cafes</a>
+            </div>
+        {% else: %}
             <div class="col-lg-6 col-md-6 mx-auto text-center">
                 <a class="btn btn-primary" href="{{ url_for ('show_overview') }}">Back to all Cafes</a>
             </div>
@@ -115,6 +119,7 @@
         </div>
     </div>
     <hr>
+    {% if current_user.is_authenticated: %}
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             {{ ckeditor.load() }}
@@ -122,8 +127,13 @@
             {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
         </div>
     </div>
+    {% else: %}
+    <p> Please
+        <a href="{{ url_for('login')}}">log in</a> or
+        <a href="{{ url_for('sign_up')}}">sign up</a>
+        to leave a review.</p>
+    {% endif %}
 </div>
-
 <hr>
 {% include "footer.html" %}
 {% endblock %}

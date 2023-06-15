@@ -10,7 +10,7 @@ from sqlalchemy.orm import relationship
 from datetime import date
 from functools import wraps
 
-from forms import CafeForm, ReviewForm, SignUpForm, LoginForm
+from forms import CafeForm, ReviewForm, SignUpForm, LoginForm, ContactForm
 
 # set info for smtp as environmental variable to keep safe
 USER = os.environ["USER"]
@@ -52,7 +52,6 @@ class Cafes(db.Model):
     name = db.Column(db.String(250), unique=True, nullable=False)
     location = db.Column(db.String(250), unique=True, nullable=False)
     maps_url = db.Column(db.VARCHAR(500), unique=True, nullable=False)
-    image_url = db.Column(db.VARCHAR(500), unique=True, nullable=False)
     open = db.Column(db.String(7), nullable=False)
     close = db.Column(db.String(7), nullable=False)
     wifi = db.Column(db.Boolean)
@@ -87,7 +86,6 @@ class Reviews(db.Model):
 #         name="Good Earth Coffee House",
 #         location="333 Banff Ave, Banff, AB T1L 1B1",
 #         maps_url="https://goo.gl/maps/aVTe7x2hdw4iu3NX7",
-#         image_url="https://lh5.googleusercontent.com/p/AF1QipMMgkOZNGreHF6na3qtMDInvNj_IY_VhCJ1MbRE=w408-h306-k-no",
 #         open="06:30AM",
 #         close="09:00PM",
 #         wifi=1,
@@ -215,7 +213,6 @@ def add_cafe():
             name=form.name.data,
             location=form.location.data,
             maps_url=form.maps_url.data,
-            image_url=form.image_url.data,
             open=form.open.data.strftime("%I:%M%p"),
             close=form.close.data.strftime("%I:%M%p"),
             wifi=check_submit_fields(form.wifi.data),
@@ -239,19 +236,22 @@ def show_all_cafes():
 def contact():
     """renders contact.html, shows a contact form, if submitted automatically sends an email to the creator of the
     website with the data from the form"""
+    form = ContactForm()
     message_sent = None
     if request.method == "POST":
-        data = request.form
-        message = f'Name: {data["name"]}\nEmail: {data["email"]}\nPhone-Number: {data["phone"]}\nMessage: ' \
-                  f'{data["message"]}'
-        with smtplib.SMTP("smtp.gmail.com") as connection:
-            connection.starttls()
-            connection.login(user=USER, password=PASSWORD)
-            connection.sendmail(from_addr=USER, to_addrs=USER,
-                                msg=f'Subject: New Contact from Cafe&WiFi\n\n{message}')
-        return render_template("contact.html", message_sent=True)
+        if form.validate_on_submit():
+            message = f'Name: {form.name.data}\nEmail: {form.email.data}\nPhone-Number: {form.phone.data}\nMessage: ' \
+                      f'{form.message.data}'
+            with smtplib.SMTP("smtp.gmail.com") as connection:
+                connection.starttls()
+                connection.login(user=USER, password=PASSWORD)
+                connection.sendmail(from_addr=USER, to_addrs=USER,
+                                    msg=f'Subject: New Contact from Cafe&WiFi\n\n{message}')
+            return render_template("contact.html", message_sent=True, form=form)
+        else:
+            return render_template("contact.html", message_sent=False, form=form)
     else:
-        return render_template("contact.html", message_sent=False)
+        return render_template("contact.html", message_sent=False, form=form)
 
 
 @app.route("/update-cafe")
@@ -336,7 +336,6 @@ def add_api_new_cafe():
         name=request.form.get("name"),
         location=request.form.get("location"),
         maps_url=request.form.get("maps_url"),
-        image_url=request.form.get("image_url"),
         open=request.form.get("open"),
         close=request.form.get("close"),
         wifi=bool(request.form.get("wifi")),
