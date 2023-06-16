@@ -109,7 +109,8 @@ def admin_only(f):
 
 
 def check_submit_fields(option):
-    """checks if option from SelectField is Yes or No and returns Boolean Value to be saved in the database"""
+    """checks if option from SelectField is Yes or No and returns Boolean Value to be saved in the database, if neither
+    option is chosen, does not return anything"""
     if option == "Yes":
         return 1
     elif option == "No":
