@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 from datetime import date
 from functools import wraps
 
+
 from forms import CafeForm, ReviewForm, SignUpForm, LoginForm, ContactForm
 
 # set info for smtp as environmental variable to keep safe

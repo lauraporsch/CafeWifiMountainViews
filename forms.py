@@ -1,7 +1,7 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TimeField, SelectField, PasswordField, EmailField
-from wtforms.validators import DataRequired, URL, Email
-from flask_ckeditor import CKEditorField
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, SubmitField, TimeField, SelectField, PasswordField, EmailField
+# from wtforms.validators import DataRequired, URL, Email
+# from flask_ckeditor import CKEditorField
 
 select_choices = ["Yes", "No", "I don't know"]
 
