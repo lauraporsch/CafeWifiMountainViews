@@ -19,4 +19,15 @@ I used a template from Start Bootstrap (https://startbootstrap.com/themes/clean-
 
 This is a work in progress.
 
+![image](https://github.com/lauraporsch/CafeWifiMountainViews/assets/127047376/f827a966-54ca-46d6-a586-c33673e6f7e9)
+
+![image](https://github.com/lauraporsch/CafeWifiMountainViews/assets/127047376/ebc98ef2-76a6-4a56-8405-95cd7f2b43d5)
+
+![image](https://github.com/lauraporsch/CafeWifiMountainViews/assets/127047376/04734bd6-6160-4dd5-9871-f8f09a557558)
+
+![image](https://github.com/lauraporsch/CafeWifiMountainViews/assets/127047376/5f2a54fd-fdaf-46e7-803a-fcf288ab4bfb)
+
+
+
+
 
